@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Dashboard</title>
+    <link rel="stylesheet" href="/css/clientDashboard.css">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body id="dash">
+
+    <!-- Header -->
+    <header>
+        <div class="logo" >
+           
+        </div>
+		<div class="hero" data-aos="fade-in">
+		       <nav class="navbar">
+				<h1>Welcome, <span th:text="${username}"></span>!</h1>
+		           <ul class="nav-links">
+		               <li><a href="#dash">Home</a></li>
+		               <li><a href="#contact">Contact</a></li>
+		               <li><a href="#about">About</a></li>
+					   <li><a href="/login">Profile</a></li>
+		               <li><a href="/logout">Logout</a></li>
+		           </ul>
+		       </nav>
+		   </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        
+        <div class="msg" data-aos="fade-down">
+			<h2>Manage your cars and view the status of your listings below!</h2>
+		</div>
+
+        <!-- Car List Section -->
+		<div class="car-list" >
+		            <div th:if="${#lists.isEmpty(cars)}" data-aos="fade-up">
+		                <p>No cars available to display.</p>
+		            </div>
+
+		            <div th:each="car : ${cars}" class="car-card" data-aos="fade-up">
+						<img th:src="@{'/images/' + ${car.carImage}}" alt="Car Image" />
+		                <h2 th:text="${car.carName}"></h2>
+		                <p th:text="'Model: ' + ${car.carModel}"></p>
+		                <p th:text="'Price: ' + ${car.price}"></p>
+						<div class="details_button"><a href="#">View Details</a></div>
+		                
+		            </div>
+		        </div>
+    </main>
+
+    <!-- Footer -->
+	<footer class="footer">
+	    <div class="footer-container">
+	        <!-- About Section -->
+	        <div class="footer-about" id="about">
+	            <h3>About Us</h3>
+	            <p>We are a trusted car dealership offering a wide range of vehicles for buyers and dealers. Dedicated to delivering quality and satisfaction, we make buying and selling cars seamless.</p>
+	        </div>
+
+	        <!-- Quick Links Section -->
+	        <div class="footer-links">
+	            <h3>Quick Links</h3>
+	            <ul>
+	                <li><a href="#">Home</a></li>
+	                <li><a href="#">About Us</a></li>
+	                <li><a href="#">Buy Cars</a></li>
+	                <li><a href="#">Sell Cars</a></li>
+	                <li><a href="#">Contact</a></li>
+	            </ul>
+	        </div>
+
+	        <!-- Social Media Section -->
+	        <div class="footer-social">
+	            <h3>Follow Us</h3>
+	            <a href="#"><i class="fab fa-facebook-f"></i></a>
+	            <a href="#"><i class="fab fa-twitter"></i></a>
+	            <a href="#"><i class="fab fa-instagram"></i></a>
+	            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+	        </div>
+
+	        <!-- Contact Form Section -->
+	        <div class="footer-contact" id="contact">
+	            <h3>Contact Us</h3>
+	            <form action="/sendMessage" method="POST" class="contact-form">
+	                <input type="text" name="name" placeholder="Your Name" required>
+	                <input type="email" name="email" placeholder="Your Email" required>
+	                <textarea name="message" placeholder="Your Message" rows="3" required></textarea>
+	                <button type="submit">Send Message</button>
+	            </form>
+	        </div>
+	    </div>
+	    <div class="footer-bottom">
+	        <p>&copy; 2024 Car Dealership. All Rights Reserved.</p>
+	    </div>
+	</footer>
+
+    <script src="dealer-scripts.js"></script>
+</body>
+<script>
+	
+	// Display car listings in the table
+	function displayCars() {
+	    const carTableBody = document.getElementById("carTableBody");
+	    carTableBody.innerHTML = ''; // Clear the table before adding new rows
+
+	    cars.forEach(car => {
+	        const row = document.createElement("tr");
+
+	        row.innerHTML = `
+	            <td>${car.name}</td>
+	            <td>${car.model}</td>
+	            <td>$${car.price}</td>
+	            <td><img src="${car.image}" alt="${car.name}"></td>
+	            <td>
+	                <button onclick="editCar(${car.id})">Edit</button>
+	                <button class="delete-btn" onclick="deleteCar(${car.id})">Delete</button>
+	            </td>
+	        `;
+	        carTableBody.appendChild(row);
+	    });
+	}
+
+	
+
+	// Edit car (currently a placeholder function)
+	function editCar(carId) {
+	    alert("Edit car with ID: " + carId);
+	    // Implement edit functionality
+	}
+
+	// Delete car
+	function deleteCar(carId) {
+	    cars = cars.filter(car => car.id !== carId);
+	    displayCars();
+	}
+
+	// Initial display of cars
+	displayCars();
+
+</script>
+<script>
+    AOS.init({
+        duration: 1200, // Animation duration (in ms)
+        easing: 'ease-in-out', // Animation easing
+       
+    });
+</script>
+
+</html>

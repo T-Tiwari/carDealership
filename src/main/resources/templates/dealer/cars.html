@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dealer Cars</title>
+</head>
+<body>
+<h1>Your Listed Cars</h1>
+<table>
+    <tr><th>Model</th><th>Brand</th><th>Price</th></tr>
+    <tr th:each="car : ${cars}">
+        <td th:text="${car.model}"></td>
+        <td th:text="${car.brand}"></td>
+        <td th:text="${car.price}"></td>
+    </tr>
+</table>
+<a href="/dealer/addCar">Add New Car</a>
+</body>
+</html>

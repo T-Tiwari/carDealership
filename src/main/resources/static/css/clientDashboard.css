@@ -1,0 +1,320 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    line-height: 1.6;
+}
+
+.hero {
+    background: url('https://million-wallpapers.ru/wallpapers/0/7/496706903755044/a-porsche-at-a-tremendous-speed-is-rolling-over-the-horizon.jpg') no-repeat center center/cover;
+    height: 100vh;
+    position: relative;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+	
+    padding: 15px 30px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Transparent black */
+    color: white;
+    z-index: 10;
+}
+
+.navbar .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+	margin-right: 60px;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #ffcc00; /* Highlight color */
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        background: rgba(0, 0, 0, 0.7);
+        width: 100%;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        display: none;
+        padding: 10px 0;
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+    }
+
+    .navbar.active .nav-links {
+        display: flex;
+    }
+}
+
+main {
+    padding: 20px;
+}
+
+.msg{
+	text-align: center;
+	margin: 50px 0px;
+	color: green;
+	height: 80px;
+	background-color: #b0bec5;
+	border-radius: 8px;
+}
+
+.msg h2{
+	padding-top: 25px;
+}
+
+/* Car List Section - Card Style */
+.car-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.car-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    padding: 20px;
+    transition: transform 0.3s ease;
+	margin: 20px;
+}
+
+.car-card:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+.car-card img {
+    width: 100%; /* Full width of the card */
+    height: 180px; /* Fixed height for image */
+    object-fit: cover; /* Ensures the image scales proportionally */
+    border-bottom: 2px solid #333; /* Divider effect below the image */
+}
+
+.details_button{
+	width: 100%;
+	height: 50px;
+	text-align: center;
+	margin-top: 15px;
+}
+
+
+.details_button a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #e74c3c; /* Button color (red) */
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+	width: 90%;
+}
+
+.details_button a:hover {
+    background-color: #c0392b; /* Darker red on hover */
+}
+
+.car-card h2 {
+    font-size: 24px;
+    margin-top: 15px;
+}
+
+.car-card p {
+    font-size: 16px;
+    color: #555;
+    margin-top: 10px;
+}
+
+.car-card .price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 15px;
+}
+
+.car-card .action-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.car-card .action-buttons button {
+    padding: 8px 16px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.car-card .action-buttons button:hover {
+    background-color: #0056b3;
+}
+
+.car-card .delete-btn {
+    background-color: #dc3545;
+}
+
+.car-card .delete-btn:hover {
+    background-color: #c82333;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #2c3e50;
+    color: #ffffff;
+    padding: 50px 20px;
+    font-family: Arial, sans-serif;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	margin-top: 50px;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.footer h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.footer p, .footer a {
+    font-size: 0.9rem;
+    color: #b0bec5;
+    text-decoration: none;
+    line-height: 1.5;
+}
+
+.footer a:hover {
+    color: #00aaff;
+}
+
+/* About Section */
+.footer-about {
+    flex: 1;
+	width: 150px;
+	margin-left: 25px;
+	margin-right: 150px;
+}
+
+/* Quick Links Section */
+.footer-links {
+    flex: 1;
+    min-width: 150px;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+/* Social Media Section */
+.footer-social {
+    flex: 1;
+    min-width: 150px;
+}
+
+.footer-social a {
+    color: #b0bec5;
+    font-size: 1.5rem;
+    margin-right: 10px;
+    transition: color 0.3s ease;
+}
+
+.footer-social a:hover {
+    color: #00aaff;
+}
+
+/* Contact Form Section */
+.footer-contact {
+    flex: 1;
+    min-width: 250px;
+	margin-right: 30px;
+}
+
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+    outline: none;
+    border: 2px solid #00aaff;
+}
+
+.contact-form button {
+    background-color: #00aaff;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #007acc;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.8rem;
+    color: #b0bec5;
+    border-top: 1px solid #b0bec5;
+    padding-top: 10px;
+}
+
