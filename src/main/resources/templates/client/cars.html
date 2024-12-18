@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Details</title>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/cars.css">
+
+
+	<style>
+		
+		body {
+		    font-family: Arial, sans-serif;
+		    margin: 0;
+		    padding: 0;
+		    line-height: 1.6;
+		    color: #333;
+		}
+
+		header {
+		    background-color: #fff;
+		    padding: 20px 0;
+		    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		}
+
+		.container {
+		    max-width: 1200px;
+		    margin: 0 auto;
+		    display: flex;
+		    justify-content: space-between;
+		    align-items: center;
+		    padding: 0 15px;
+		}
+
+		/* Logo Styling */
+		.logo h1 {
+		    font-size: 28px;
+		    font-weight: bold;
+		    color: #28a745;
+		    margin: 0;
+		}
+
+		.logo p {
+		    font-size: 14px;
+		    color: #555;
+		    margin: 0;
+		}
+
+		/* Navigation Menu */
+		nav {
+		     margin-left: auto;
+		}
+
+		.nav-links {
+		    list-style: none;
+		    display: flex;
+		    gap: 20px;
+		}
+
+		.nav-links li {
+		    display: inline-block;
+		}
+
+		.nav-links li a {
+		    text-decoration: none;
+		    font-size: 16px;
+		    color: #333;
+		    padding: 8px 12px;
+		    transition: color 0.3s ease, background-color 0.3s ease;
+		    border-radius: 4px;
+		}
+
+		.nav-links li a:hover {
+		    color: #fff;
+		    background-color: #28a745;
+		}
+
+
+		.car-details-container {
+		    display: flex;
+		    flex-wrap: wrap; /* Allow flexibility for smaller screens */
+		    gap: 20px;
+		    justify-content: space-between;
+		    background-color: #fff;
+		    padding: 20px;
+		    border: 1px solid #ddd;
+		    border-radius: 8px;
+		    max-width: 1200px;
+		    margin: 30px auto;
+		    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+		}
+
+		/* Car Images Section */
+		.car-images {
+		    flex: 2; /* Take more space for the car images section */
+		    display: flex;
+		    flex-direction: column;
+		    align-items: center;
+		    gap: 15px;
+		}
+
+		.car-images img {
+		    max-width: 100%; /* Ensure image scales properly */
+		    max-height: 300px; /* Limit the height to prevent overlapping */
+		    border-radius: 8px;
+		    object-fit: cover; /* Ensures the image maintains aspect ratio */
+		    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		}
+
+		.car-images .thumbnails {
+		    display: flex;
+		    flex-wrap: wrap; /* Allow thumbnails to wrap for smaller screens */
+		    justify-content: center;
+		    gap: 10px;
+		}
+
+		.car-images .thumbnails img {
+		    width: 70px;
+		    height: 70px;
+		    border-radius: 8px;
+		    cursor: pointer;
+		    border: 1px solid #ddd;
+		    transition: transform 0.3s ease, box-shadow 0.3s ease;
+		    object-fit: cover; /* Maintain the aspect ratio of thumbnails */
+		}
+
+		.car-images .thumbnails img:hover {
+		    transform: scale(1.1);
+		    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+		}
+
+		/* Booking Form Section */
+		.booking-form {
+		    flex: 1; /* Take less space compared to the images */
+		    background-color: #f9f9f9;
+		    padding: 20px;
+		    border-radius: 8px;
+		    border: 1px solid #ddd;
+		}
+
+		.booking-form h3 {
+		    font-size: 20px;
+		    margin-bottom: 15px;
+		    color: #333;
+		}
+
+		.booking-form form {
+		    display: flex;
+		    flex-direction: column;
+		    gap: 10px;
+		}
+
+		.booking-form input,
+		.booking-form textarea {
+		    width: 94%;
+		    padding: 10px;
+		    border: 1px solid #ddd;
+		    border-radius: 5px;
+		    font-size: 14px;
+		}
+
+		.booking-form button {
+		    padding: 10px;
+		    margin-top: 20px;
+		    background-color: #28a745;
+		    color: #fff;
+		    font-size: 16px;
+		    border: none;
+		    border-radius: 5px;
+		    cursor: pointer;
+		    transition: background-color 0.3s ease;
+		}
+
+		.booking-form button:hover {
+		    background-color: #218838;
+		}
+
+		/* Responsive Design */
+		@media (max-width: 768px) {
+		    .car-details-container {
+		        flex-direction: column; /* Stack the elements for smaller screens */
+		        align-items: center;
+		    }
+
+		    .car-images img {
+		        max-height: 200px; /* Reduce image height on smaller screens */
+		    }
+
+		    .car-images .thumbnails img {
+		        width: 60px;
+		        height: 60px; /* Smaller thumbnails */
+		    }
+
+		    .booking-form {
+		        width: 100%; /* Ensure the booking form spans the full width */
+		    }
+		}
+		
+		.buy-button-container{
+			display: flex;		
+			justify-content: center;
+			height: 50px;
+		}
+		
+		.buy-button {
+			width: 82%;
+			background-color: #28a745;
+			color: white;
+			text-align: center;
+			text-decoration: none;	
+			border-radius: 8px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		
+		.buy-button:hover {
+		    background-color: #218838;
+		}
+		
+		.car-info-container {
+		            font-family: Arial, sans-serif;
+		            margin: 30px auto;
+		            max-width: 79%;
+		            border: 1px solid #ccc;
+		            padding: 20px;
+		            border-radius: 8px;
+		        }
+		        .car-info-header {
+		            font-size: 24px;
+		            font-weight: bold;
+		            margin-bottom: 20px;
+		        }
+		        .car-info-row {
+		            display: flex;
+		            justify-content: space-between;
+		            margin-bottom: 8px;
+		        }
+		        .car-info-label {
+		            font-weight: bold;
+		        }
+				.car-info-container-heading{
+					display: flex;
+					width: 100%;
+					justify-content: center;
+					border-bottom: 2px solid black;
+				}
+		
+		.car-description.container {
+			background-color: #f9f9f9; 
+			padding: 20px; 
+			border: 1px solid #ddd; 
+			border-radius: 8px; 
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+			max-width: 79%; 
+			margin: 20px auto; 
+			font-family: 'Arial', sans-serif; 
+			color: #333; 
+			display: block;
+		}
+
+		.car-description-heading {
+			width: 100%; 
+			margin-bottom: 10px; 
+			color: #222; 
+			text-align: center; 
+			border-bottom: 2px solid black;
+		}
+
+	 	.car-description-paragraph {
+			font-size: 16px; 
+			line-height: 1.6; 
+			margin: 25px; 
+			text-align: justify; 
+		}					
+
+		footer {
+		    background: #343a40;
+		    color: white;
+		    text-align: center;
+		    padding: 10px 0;
+		    margin-top: 20px;
+		}
+
+		.footer {
+		    background-color: #2c3e50;
+		    color: #ffffff;
+		    padding: 50px 20px;
+		    font-family: Arial, sans-serif;
+			border-top-left-radius: 10px;
+			border-top-right-radius: 10px;
+			margin-top: 50px;
+		}
+
+		.footer-container {
+		    display: flex;
+		    flex-wrap: wrap;
+		    justify-content: space-between;
+		    gap: 20px;
+		}
+
+		.footer h3 {
+		    font-size: 1.5rem;
+		    margin-bottom: 15px;
+		    color: #ffffff;
+		}
+
+		.footer p, .footer a {
+		    font-size: 0.9rem;
+		    color: #b0bec5;
+		    text-decoration: none;
+		    line-height: 1.5;
+		}
+
+		.footer a:hover {
+		    color: #00aaff;
+		}
+
+		/* About Section */
+		.footer-about {
+		    flex: 1;
+			width: 150px;
+			margin-left: 25px;
+			margin-right: 150px;
+		}
+
+		/* Quick Links Section */
+		.footer-links {
+		    flex: 1;
+		    min-width: 150px;
+		}
+
+		.footer-links ul {
+		    list-style: none;
+		    padding: 0;
+		}
+
+		.footer-links li {
+		    margin-bottom: 10px;
+		}
+
+		/* Social Media Section */
+		.footer-social {
+		    flex: 1;
+		    min-width: 150px;
+		}
+
+		.footer-social a {
+		    color: #b0bec5;
+		    font-size: 1.5rem;
+		    margin-right: 10px;
+		    transition: color 0.3s ease;
+		}
+
+		.footer-social a:hover {
+		    color: #00aaff;
+		}
+
+		/* Contact Form Section */
+		.footer-contact {
+		    flex: 1;
+		    min-width: 250px;
+			margin-right: 30px;
+		}
+
+		.contact-form input, .contact-form textarea {
+		    width: 100%;
+		    margin-bottom: 10px;
+		    padding: 10px;
+		    border: none;
+		    border-radius: 5px;
+		}
+
+		.contact-form input:focus, .contact-form textarea:focus {
+		    outline: none;
+		    border: 2px solid #00aaff;
+		}
+
+		.contact-form button {
+		    background-color: #00aaff;
+		    color: #ffffff;
+		    padding: 10px 20px;
+		    border: none;
+		    border-radius: 5px;
+		    cursor: pointer;
+		    transition: background-color 0.3s ease;
+		}
+
+		.contact-form button:hover {
+		    background-color: #007acc;
+		}
+
+		/* Footer Bottom */
+		.footer-bottom {
+		    text-align: center;
+		    margin-top: 20px;
+		    font-size: 0.8rem;
+		    color: #b0bec5;
+		    border-top: 1px solid #b0bec5;
+		    padding-top: 10px;
+		}
+		
+	</style>
+</head>
+<body>
+	<header>
+	        <div class="container">
+	            <div class="logo">
+	                <h1>BYC</h1>
+					<p>Buy Your Car</p>
+	            </div>
+	            <nav>
+	                <ul class="nav-links">
+	                    <li><a href="#">Home</a></li>
+	                    <li><a href="/client/dashboard">Car Listing</a></li>
+	                    <li><a href="#">Pages</a></li>
+	                    <li><a href="#">Contact</a></li>
+	                    <li><a href="#">Blog</a></li>
+	                </ul>
+	            </nav>
+	        </div>
+	    </header>
+    <main>
+		<div class="car-details-container">
+		        
+		        <div class="car-images">
+		             <img th:src="@{/car/image/{carId}(carId=${car.id})}" alt="Car Image"/>
+		            <div class="thumbnails">
+		                <img src="car-thumb1.jpg" alt="Car Thumbnail 1">
+		                <img src="car-thumb2.jpg" alt="Car Thumbnail 2">
+		                <img src="car-thumb3.jpg" alt="Car Thumbnail 3">
+		                <img src="car-thumb4.jpg" alt="Car Thumbnail 4">
+		            </div>
+		        </div>
+
+		        
+		        <div class="booking-form">
+		            <h3>Book The Car</h3>
+					<form action="/booking" method="POST">
+										<input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+
+										<input type="text" name="name" placeholder="Your Name" required>
+										<input type="tel" name="phone" placeholder="Phone" required>
+										<input type="email" name="email" placeholder="Your Email" required>
+										<textarea name="message" placeholder="Message"></textarea>
+										<button type="submit">Send Message</button>
+									</form>
+		            
+		        </div>
+		    </div>
+			
+			<div class="buy-button-container">
+				<a href="/payment-gateway" class="buy-button">Buy Now</a>
+			</div>
+			
+			<div class="car-info-container">
+			<div class="car-info-container-heading">
+				<h3>Car Details</h3>
+			</div>
+				<div th:if="${car != null}">    					
+			        <div class="car-info-row">
+			            <span class="car-info-label"><p th:text="'Name: '+${car.carName}"></p></span>			           
+			        </div>			       
+			        <div class="car-info-row">
+			            <span class="car-info-label"><p th:text="'Model: ' + ${car.carModel}"></p></span>			            
+			        </div>			        
+			        <div class="car-info-row">
+			            <span class="car-info-label"><p th:text="'Price: ' + ${car.price}"></p></span>			            
+			        </div>				
+			    </div>
+				<div th:if="${car == null}">
+				    <p>No car details available.</p>
+				</div>
+		</div>
+     	<div class="car-description container">
+            <div class="car-description-heading">
+				<h3>Car Description</h3>
+			</div>
+			<div class="car-description-paragraph">
+				<p>This vehicle is designed to provide an exceptional driving experience, combining comfort, performance, and style. Whether you're navigating city streets, embarking on a road trip, or seeking adventure off the beaten path, this car delivers reliability and versatility.</p>
+			</div>
+			<div class="car-description-paragraph">
+				<p>Equipped with modern features, advanced safety systems, and efficient fuel consumption, it caters to both practical needs and driving enjoyment. The spacious interior, premium materials, and cutting-edge technology create a luxurious and convenient environment for both drivers and passengers.</p>
+			</div>
+			<div class="car-description-paragraph">
+				<p>With a sleek design and powerful engine options, this car ensures a smooth ride and standout performance, making it a perfect choice for individuals, families, or professionals.</p>
+			</div>
+			<div class="car-description-paragraph">
+				<p>Experience innovation, quality, and excellence – all packed into one remarkable vehicle.</p>
+			</div>	
+		</div>
+	
+    </main>
+	<footer class="footer">
+		    <div class="footer-container">
+		        <!-- About Section -->
+		        <div class="footer-about" id="about">
+		            <h3>About Us</h3>
+		            <p>We are a trusted car dealership offering a wide range of vehicles for buyers and dealers. Dedicated to delivering quality and satisfaction, we make buying and selling cars seamless.</p>
+		        </div>
+
+		        <!-- Quick Links Section -->
+		        <div class="footer-links">
+		            <h3>Quick Links</h3>
+		            <ul>
+		                <li><a href="#">Home</a></li>
+		                <li><a href="#">About Us</a></li>
+		                <li><a href="#">Buy Cars</a></li>
+		                <li><a href="#">Sell Cars</a></li>
+		                <li><a href="#">Contact</a></li>
+		            </ul>
+		        </div>
+
+		        <!-- Social Media Section -->
+		        <div class="footer-social">
+		            <h3>Follow Us</h3>
+		            <a href="#"><i class="fab fa-facebook-f"></i></a>
+		            <a href="#"><i class="fab fa-twitter"></i></a>
+		            <a href="#"><i class="fab fa-instagram"></i></a>
+		            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+		        </div>
+
+		        <!-- Contact Form Section -->
+		        <div class="footer-contact" id="contact">
+		            <h3>Contact Us</h3>
+					<form action="/send" method="POST" class="contact-form">
+										<input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+
+										<input type="text" name="name" placeholder="Your Name" required>
+										<input type="email" name="email" placeholder="Your Email" required>
+										<textarea name="message" placeholder="Your Message" rows="3" required></textarea>
+										<button type="submit">Send Message</button>
+									</form>
+		        </div>
+		    </div>
+		    <div class="footer-bottom">
+		        <p>&copy; 2024 Car Dealership. All Rights Reserved.</p>
+		    </div>
+		</footer>
+
+</body>
+</html>
+

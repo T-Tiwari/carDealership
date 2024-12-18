@@ -9,6 +9,9 @@ html {
     scroll-behavior: smooth;
 }
 
+#favicon{
+	border-radius: 10px;
+}
 
 .hero {
     background: url('https://storage.googleapis.com/pod_public/1300/167025.jpg') no-repeat center center/cover;

@@ -29,9 +29,9 @@ public class SecurityConfig {
             .authorizeRequests()
             .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
             .requestMatchers("/dealer/**").hasRole("DEALER") // Restricting access to dealer pages
-                .requestMatchers("/client/**").hasRole("CLIENT") // Restricting access to client pages
-                .requestMatchers("/", "/register", "/register/client", "/register/dealer", "/login").permitAll() // Public pages
-                .anyRequest().authenticated() // All other requests require authentication
+            .requestMatchers("/client/**").hasRole("CLIENT") // Restricting access to client pages
+            .requestMatchers("/", "/register", "/register/client", "/register/dealer", "/login").permitAll() // Public pages
+            .anyRequest().authenticated() // All other requests require authentication
             .and()
             .formLogin()
                 .loginPage("/login")
@@ -40,7 +40,13 @@ public class SecurityConfig {
             .and()
             .logout()
                 .logoutSuccessUrl("/login?logout") // Redirect to login page after logout
-                .permitAll();
+                .permitAll()
+            .and()
+            .exceptionHandling()
+                .accessDeniedHandler((request, response, accessDeniedException) -> {
+                    System.out.println("Access Denied: " + accessDeniedException.getMessage());
+                    response.sendRedirect("/error/403");
+                });
 
         return http.build();
     }
@@ -59,21 +65,5 @@ public class SecurityConfig {
         return authenticationManagerBuilder.build();
     }
     
-    @Bean
-    public SecurityFilterChain securityFilterChain1(HttpSecurity http) throws Exception {
-        http
-            .authorizeRequests()
-            .requestMatchers("/dealer/**").hasRole("DEALER")
-            .anyRequest().authenticated()
-            .and()
-            .exceptionHandling()
-            .accessDeniedHandler((request, response, accessDeniedException) -> {
-                System.out.println("Access Denied: " + accessDeniedException.getMessage());
-                response.sendRedirect("/error/403");
-            });
-
-        return http.build();
-    }
     
-
 }

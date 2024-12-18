@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BYC.com</title>
+    <title>BYC: New Cars, Car Prices, Buy & Sell Used Cars in India </title>
+	<link rel="icon" type="image/x-icon" href="/images/favicon.ico" id="favicon">
     <link rel="stylesheet" href="css/index.css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
@@ -133,12 +134,14 @@
         <!-- Contact Form Section -->
         <div class="footer-contact" id="contact">
             <h3>Contact Us</h3>
-            <form action="/sendMessage" method="POST" class="contact-form">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <textarea name="message" placeholder="Your Message" rows="3" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
+			<form action="/send" method="POST" class="contact-form">
+								<input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+
+								<input type="text" name="name" placeholder="Your Name" required>
+								<input type="email" name="email" placeholder="Your Email" required>
+								<textarea name="message" placeholder="Your Message" rows="3" required></textarea>
+								<button type="submit">Send Message</button>
+							</form>
         </div>
     </div>
     <div class="footer-bottom">

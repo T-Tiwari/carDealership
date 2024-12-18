@@ -1,10 +1,12 @@
 package com.example.demo.Entity;
 
 
+import java.io.Serializable;
+
 import jakarta.persistence.*;
 
 @Entity
-public class Car {
+public class Car implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,10 +15,11 @@ public class Car {
     private String carName;
     private String carModel;
     private String price;
-    private String carImage;
+    @Lob
+    private byte[] image;
 
     @ManyToOne
-    @JoinColumn(name = "dealer_id")
+    @JoinColumn(name = "dealerId")
     private Dealer dealer;
 
 	public Long getId() {
@@ -51,12 +54,12 @@ public class Car {
 		this.price = price;
 	}
 
-	public String getCarImage() {
-		return carImage;
+	public byte[] getImage() {
+		return image;
 	}
 
-	public void setCarImage(String carImage) {
-		this.carImage = carImage;
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
 
 	public Dealer getDealer() {
@@ -67,8 +70,21 @@ public class Car {
 		this.dealer = dealer;
 	}
 
+	public Car(Long id, String carName, String carModel, String price, byte[] image, Dealer dealer) {
+		super();
+		this.id = id;
+		this.carName = carName;
+		this.carModel = carModel;
+		this.price = price;
+		this.image = image;
+		this.dealer = dealer;
+	}
+
+	public Car() {
+		super();
+	}
+
     
     
-    // Getters and Setters
 }
 
